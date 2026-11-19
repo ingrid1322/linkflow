@@ -10,7 +10,7 @@ datasource db {
 
 model Link {
   id         Int      @id @default(autoincrement())
-  orinalUrl  String
+  originalUrl  String
   shortCode  String   @unique
   clicks     Int      @default(0)
   createdAt  DateTime @default(now())  
