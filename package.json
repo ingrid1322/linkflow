@@ -1,0 +1,41 @@
+{
+  "name": "linkflow",
+  "version": "1.0.0",
+  "description": "Encurtador de URLs desenvolvido com TypeScript e PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma skills sync || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingrid1322/linkflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ingrid1322/linkflow/issues"
+  },
+  "homepage": "https://github.com/ingrid1322/linkflow#readme",
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "prisma": "^6.19.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "prisma@6.19.3": true,
+    "@prisma/client@6.19.3": true,
+    "@prisma/engines@6.19.3": true
+  }
+}
