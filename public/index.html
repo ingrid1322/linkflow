@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkFlow - Encurtador de URLs</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LinkFlow</h1>
+      <p>Encurte seus links e acompanhe os cliques em tempo real</p>
+    </header>
+
+    <form id="shorten-form" class="form-box">
+      <input
+        type="url"
+        id="originalUrl"
+        placeholder="Cole aqui o link completo (ex: https://google.com)"
+        required
+      />
+      <input
+        type="text"
+        id="customCode"
+        class="custom-input"
+        placeholder="Apelido (opcional)"
+      />
+      <button type="submit">Encurtar</button>
+    </form>
+
+    <div id="links-list" class="links-list"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('shorten-form');
+    const linksList = document.getElementById('links-list');
+
+    async function copyLink(url, btn) {
+      await navigator.clipboard.writeText(url);
+      const originalText = btn.innerText;
+      btn.innerText = 'Copiado!';
+      setTimeout(() => btn.innerText = originalText, 2000);
+    }
+
+    async function deleteLink(id) {
+      await fetch(`/api/links/${id}`, { method: 'DELETE' });
+      loadLinks();
+    }
+
+    async function loadLinks() {
+      const response = await fetch('/api/links');
+      const links = await response.json();
+
+      linksList.innerHTML = links.map(link => {
+        const fullShortUrl = `${window.location.origin}/${link.shortCode}`;
+        return `
+          <div class="link-card">
+            <div class="link-info">
+              <a class="short-url" href="/${link.shortCode}" target="_blank" onclick="setTimeout(loadLinks, 500)">
+                ${fullShortUrl}
+              </a>
+              <div class="original-url">${link.originalUrl}</div>
+            </div>
+            <div class="card-actions">
+              <span class="badge">${link.clicks} cliques</span>
+              <button class="btn-copy" onclick="copyLink('${fullShortUrl}', this)">Copiar</button>
+              <button class="btn-delete" onclick="deleteLink(${link.id})">Excluir</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const urlInput = document.getElementById('originalUrl');
+      const customInput = document.getElementById('customCode');
+
+      const response = await fetch('/api/links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          originalUrl: urlInput.value,
+          customCode: customInput.value
+        })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data.error || 'Erro ao criar link.');
+        return;
+      }
+
+      urlInput.value = '';
+      customInput.value = '';
+      loadLinks();
+    });
+
+    loadLinks();
+  </script>
+</body>
+</html>

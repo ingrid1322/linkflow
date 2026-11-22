@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+
+header p {
+  color: #94a3b8;
+}
+
+.form-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+input {
+  flex: 2;
+  min-width: 240px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #fff;
+  font-size: 1rem;
+}
+
+input.custom-input {
+  flex: 1;
+  min-width: 160px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #0284c7;
+  color: #fff;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.link-info {
+  overflow: hidden;
+  flex: 1;
+}
+
+.short-url {
+  color: #38bdf8;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.original-url {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 420px;
+  margin-top: 4px;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  background-color: #0f172a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #38bdf8;
+  white-space: nowrap;
+}
+
+.btn-copy,
+.btn-delete {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.btn-copy {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.btn-copy:hover {
+  background-color: #475569;
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+}
